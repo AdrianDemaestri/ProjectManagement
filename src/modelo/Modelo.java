@@ -51,7 +51,6 @@ public class Modelo {
             }
         } catch (IOException e) {
         } catch (ClassNotFoundException e) {}
-
     }
     public ArrayList<Proyecto> getProyectos() {
         return proyectos;

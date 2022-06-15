@@ -42,5 +42,4 @@ public class Correccion extends MedirTiempo implements Serializable {
     public int LineasCodigo(){
         return getLineasAgregadas() - getLineasErroneas();
     }
-    
 }

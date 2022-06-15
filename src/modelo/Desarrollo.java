@@ -21,6 +21,4 @@ public class Desarrollo extends MedirTiempo implements Serializable{
     public void setLineasCodigo(Integer lineasCodigo) {
         this.lineasCodigo = lineasCodigo;
     }
-
-    
 }
