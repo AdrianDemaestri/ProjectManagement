@@ -57,7 +57,38 @@ public class Tarea implements Serializable{
         return  desarrollo.getLineasCodigo() + correccion.LineasCodigo();
     }
 
-    public Tarea(String nombre) {
-        this.nombre = nombre;
+    // Metodos de Informe (Interface)
+    @Override
+    public int lineasCodigoTotal() {
+        return getDesarrollo().getLineasCodigo() + getCorreccion().LineasCodigo();
+    }
+
+    @Override
+    public Long tiempoTotal() {
+        return getDesarrollo().getTiempo() + getCorreccion().getTiempo();
+    }
+
+    @Override
+    public Long tiempoDesarrollo() {
+        return getDesarrollo().getTiempo();
+    }
+
+    @Override
+    public Long tiempoCorrecciones() {
+        return getCorreccion().getTiempo();
+    }
+    @Override
+    public float lineaCodigoTotalPorHora() {
+        return 0;
+    }
+
+    @Override
+    public float lineaCodigoErroneasCada100Lineas() {
+        return (float)getCorreccion().getLineasErroneas() / (float) (lineasCodigoTotal() / 100);
+    }
+
+    @Override
+    public float porcentajeCodigoErroneo() {
+        return (float)getCorreccion().getLineasErroneas() * 100 / (float) (lineasCodigoTotal());
     }
 }

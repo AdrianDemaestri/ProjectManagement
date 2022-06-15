@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author INFORMATICA2
  */
-public class Correccion extends Crono implements Serializable {
+public class Correccion extends MedirTiempo implements Serializable {
     private Integer lineasAgregadas;
     private Long tiempo;
     private Integer lineasErroneas;

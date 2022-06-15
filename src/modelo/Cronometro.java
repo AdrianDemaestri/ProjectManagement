@@ -3,11 +3,16 @@ package modelo;
 import java.time.LocalTime;
 
 public class Cronometro {
-    private long horaInicio;
-    private long horaFin;
-    private Crono objeto;
+    private Long horaInicio;
+    private Long horaFin;
+    private MedirTiempo objeto;
 
-     public void iniciar(Crono obj){
+    public Cronometro(Long horaInicio, Long horaFin, MedirTiempo objeto){
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.objeto = objeto;
+    }
+     public void iniciar(MedirTiempo obj){
          if (objeto != null)
             this.objeto = obj;
          this.horaInicio = Tiempo.pasarTimeALong(LocalTime.now());
@@ -16,7 +21,7 @@ public class Cronometro {
         this.horaFin = Tiempo.pasarTimeALong(LocalTime.now());
         objeto.setTiempo(horaFin - horaInicio);
      }
-    public Crono getObjeto() {
+    public MedirTiempo getObjeto() {
         return objeto;
     }
 }
