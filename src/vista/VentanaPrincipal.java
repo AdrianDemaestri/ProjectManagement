@@ -7,6 +7,14 @@ package vista;
 import com.formdev.flatlaf.FlatIconColors;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Image;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.embed.swing.JFXPanel;
+import javafx.geometry.Side;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,9 +29,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         
+        final JFXPanel xPanel = new JFXPanel();
+        jScrollPane3.setViewportView(xPanel);
+        Platform.runLater(() -> {
+            initFX(xPanel,"/css/pieChart.css");
+        });
+        
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/hora.png")).getImage());
         setSize(70*16,70*9);
         setLocationRelativeTo(null);
+    }
+    
+    private void initFX(JFXPanel panel, String ruta){
+        panel.setOpaque(true);
+        Scene scene = new Scene(new Group());
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Correccion", 13),
+                new PieChart.Data("Desarrolo", 25),
+                new PieChart.Data("Prueba", 10),
+                new PieChart.Data("Analisis", 22));
+        final PieChart chart = new PieChart(pieChartData);
+        chart.setTitle("Prueba Proyencto");
+        chart.setLegendSide(Side.RIGHT);
+        ((Group) scene.getRoot()).getChildren().add(chart);
+        
+       try{    
+            scene.getStylesheets().add(ruta);
+        }
+      catch (Exception ex)
+      {
+         System.err.println("Cannot acquire stylesheet: " + ex.toString());
+      }
+        
+        panel.setScene(scene);
     }
 
     /**
@@ -41,6 +80,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPane1 = new javax.swing.JScrollPane();
+        informacionProyecto2 = new vista.InformacionProyecto();
         jScrollPane3 = new javax.swing.JScrollPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -65,7 +105,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Project Menegement");
         setAutoRequestFocus(false);
-        setPreferredSize(new java.awt.Dimension(1120, 630));
 
         jSplitPane2.setDividerLocation(300);
 
@@ -76,6 +115,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane1.setDividerLocation(250);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setToolTipText("");
+
+        jScrollPane1.setViewportView(informacionProyecto2);
+
         jSplitPane1.setLeftComponent(jScrollPane1);
         jSplitPane1.setRightComponent(jScrollPane3);
 
@@ -111,11 +153,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 955, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
         );
 
         pack();
@@ -132,6 +174,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private vista.InformacionProyecto informacionProyecto2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
