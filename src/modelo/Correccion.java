@@ -12,8 +12,18 @@ import java.io.Serializable;
  */
 public class Correccion extends MedirTiempo implements Serializable {
     private Integer lineasAgregadas;
-    private Long tiempo;
     private Integer lineasErroneas;
+
+    public Correccion(Integer lineasAgregadas, Integer lineasErroneas, Long tiempo){
+        super(tiempo);
+        this.lineasAgregadas = lineasAgregadas;
+        this.lineasErroneas = lineasErroneas;
+    }
+    public Correccion(Correccion correccion){
+        super(correccion.getTiempo());
+        this.lineasAgregadas = correccion.getLineasAgregadas();
+        this.lineasErroneas = correccion.getLineasErroneas();
+    }
 
     public Integer getLineasAgregadas() {
         return lineasAgregadas;
@@ -21,14 +31,6 @@ public class Correccion extends MedirTiempo implements Serializable {
 
     public void setLineasAgregadas(Integer lineasAgregadas) {
         this.lineasAgregadas = lineasAgregadas;
-    }
-
-    public Long getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(Long tiempo) {
-        this.tiempo = tiempo;
     }
 
     public Integer getLineasErroneas() {

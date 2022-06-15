@@ -10,12 +10,28 @@ import java.io.Serializable;
  *
  * @author ValhalaCode
  */
-public class Tarea implements Serializable{
+public class Tarea implements Serializable, Informe{
 
     private String nombre;
+    private String tareaPadre;
     private String descripcion;
     private Correccion correccion;
     private Desarrollo desarrollo;
+
+    public Tarea(String nombre, String tareaPadre, String descripcion, Desarrollo desarrollo, Correccion correccion) {
+        this.nombre = nombre;
+        this.tareaPadre = tareaPadre;
+        this.descripcion = descripcion;
+        this.desarrollo = desarrollo;
+        this.correccion = correccion;
+    }
+    public Tarea(Tarea tarea){
+        this.nombre = tarea.getNombre();
+        this.tareaPadre = tarea.getTareaPadre();
+        this.descripcion = tarea.getDescripcion();
+        this.desarrollo = tarea.getDesarrollo();
+        this.correccion = tarea.getCorreccion();
+    }
 
     public String getNombre() {
         return nombre;
@@ -24,6 +40,15 @@ public class Tarea implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getTareaPadre() {
+        return tareaPadre;
+    }
+
+    public void setTareaPadre(String nombre) {
+        this.tareaPadre = tareaPadre;
+    }
+
     public Correccion getCorreccion() {
         return correccion;
     }

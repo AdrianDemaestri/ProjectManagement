@@ -5,18 +5,6 @@ import java.time.LocalTime;
 
 public class Tiempo implements Serializable {
 
-    private Long timeNano;
-
-    public Tiempo(Long timeNano){
-        this.timeNano = timeNano;
-    }
-    public Long getTimeNano(){
-        return this.timeNano;
-    }
-    public void setTimeNano(Long timeNnao){
-        this.timeNano = timeNano;
-    }
-
     public static LocalTime pasarLongATime(Long tiempoEnNano){
         Double nanosegundos, segundos, minutos, horas, resto;
         // Calculamos el tiempo total en hs y el resto lo usamos para caluclar los min
