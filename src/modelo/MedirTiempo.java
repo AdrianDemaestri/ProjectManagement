@@ -1,5 +1,6 @@
 package modelo;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class MedirTiempo implements Serializable {
@@ -8,9 +9,12 @@ public class MedirTiempo implements Serializable {
     public MedirTiempo(int tiempo){
         this.tiempo = tiempo;
     }
+    public MedirTiempo(){
+        this.tiempo = 0;
+    }
 
-    public void cronometro(Cronometro cronometro) {
-        cronometro.iniciar(this);
+    public void cronometro(Cronometro cronometro, JTextField tiempo) {
+        cronometro.iniciar(this,tiempo);
     }
 
     public int getTiempo() {
