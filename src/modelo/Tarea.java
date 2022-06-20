@@ -74,7 +74,7 @@ public class Tarea implements Serializable, Informe{
     }
 
     // Metodo para calcular el tiempo total del desarrollo
-    public Long tiempo(){
+    public int tiempo(){
         return correccion.getTiempo() + desarrollo.getTiempo();
     }
     // Metodo para calcular las lineas totales de la tarea en particular
@@ -89,17 +89,17 @@ public class Tarea implements Serializable, Informe{
     }
 
     @Override
-    public Long tiempoTotal() {
+    public int tiempoTotal() {
         return getDesarrollo().getTiempo() + getCorreccion().getTiempo();
     }
 
     @Override
-    public Long tiempoDesarrollo() {
+    public int tiempoDesarrollo() {
         return getDesarrollo().getTiempo();
     }
 
     @Override
-    public Long tiempoCorrecciones() {
+    public int tiempoCorrecciones() {
         return getCorreccion().getTiempo();
     }
     @Override

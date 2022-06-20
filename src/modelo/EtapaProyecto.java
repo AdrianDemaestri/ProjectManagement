@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author INFORMATICA2
  */
 public class EtapaProyecto extends MedirTiempo implements Serializable{
-    public EtapaProyecto(Long tiempo){
+    public EtapaProyecto(int tiempo){
         super(tiempo);
     }
     public EtapaProyecto(EtapaProyecto etapa){

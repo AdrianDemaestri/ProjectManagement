@@ -9,9 +9,9 @@ public interface Informe {
 //    public void mostrarEstadisticas();
 
     public int lineasCodigoTotal();
-    public Long tiempoTotal();
-    public Long tiempoDesarrollo();
-    public Long tiempoCorrecciones();
+    public int tiempoTotal();
+    public int tiempoDesarrollo();
+    public int tiempoCorrecciones();
     public float lineaCodigoTotalPorHora();
     public float lineaCodigoErroneasCada100Lineas();
     public float porcentajeCodigoErroneo();

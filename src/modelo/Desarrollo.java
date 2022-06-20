@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Desarrollo extends MedirTiempo implements Serializable{
     private Integer lineasCodigo;
 
-    public Desarrollo(Integer lineasCodigo, Long tiempo){
+    public Desarrollo(Integer lineasCodigo, int tiempo){
         super(tiempo);
         this.lineasCodigo = lineasCodigo;
     }

@@ -23,7 +23,7 @@ public class Proyecto implements Serializable, Informe{
     // Metodos getter y setter 
 
 
-    public Proyecto(String nombre, Long tiempoAnalisis, Long tiempoPruebas) {
+    public Proyecto(String nombre, int tiempoAnalisis, int tiempoPruebas) {
         this.nombre = nombre;
         this.analisis.setTiempo(tiempoAnalisis);
         this.pruebas.setTiempo(tiempoPruebas);
@@ -85,8 +85,8 @@ public class Proyecto implements Serializable, Informe{
     }
 
     @Override
-    public Long tiempoTotal(){
-        Long acum = Integer.toUnsignedLong(0);
+    public int tiempoTotal(){
+        int acum = 0;
         for (Tarea tarea : tareas)
             acum += tarea.tiempo();
         acum += pruebas.getTiempo();
@@ -94,22 +94,22 @@ public class Proyecto implements Serializable, Informe{
         return acum;
     }
     @Override
-    public Long tiempoDesarrollo(){
-        Long resultado = Integer.toUnsignedLong(0);
+    public int tiempoDesarrollo(){
+        int resultado = 0;
         for (Tarea tarea : tareas)
             resultado += tarea.getDesarrollo().getTiempo();
         return resultado;
     }
     @Override
-    public Long tiempoCorrecciones(){
-        Long resultado = Integer.toUnsignedLong(0);
+    public int tiempoCorrecciones(){
+        int resultado = 0;
         for (Tarea tarea : tareas)
             resultado += tarea.getCorreccion().getTiempo();
         return resultado;
     }
     @Override
     public float lineaCodigoTotalPorHora(){
-        Long nanosegundos = this.tiempoTotal();
+        int nanosegundos = this.tiempoTotal();
         int lineasCodigoTotal = this.lineasCodigoTotal();
         float horas = (float)(nanosegundos / 3600000000000L);
         return lineasCodigoTotal / horas;
@@ -130,10 +130,10 @@ public class Proyecto implements Serializable, Informe{
         lineasErroneas = lineasErroneas / (float)(this.lineasCodigoTotal() / 100);
         return lineasErroneas;
     }
-    public Long tiempoAnalisis(){
+    public int tiempoAnalisis(){
         return getAnalisis().getTiempo();
     }
-    public Long tiempoPrueba(){
+    public int tiempoPrueba(){
         return getPruebas().getTiempo();
     }
 }

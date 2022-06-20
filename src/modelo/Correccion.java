@@ -14,7 +14,7 @@ public class Correccion extends MedirTiempo implements Serializable {
     private Integer lineasAgregadas;
     private Integer lineasErroneas;
 
-    public Correccion(Integer lineasAgregadas, Integer lineasErroneas, Long tiempo){
+    public Correccion(Integer lineasAgregadas, Integer lineasErroneas, int tiempo){
         super(tiempo);
         this.lineasAgregadas = lineasAgregadas;
         this.lineasErroneas = lineasErroneas;

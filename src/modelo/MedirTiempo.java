@@ -3,9 +3,9 @@ package modelo;
 import java.io.Serializable;
 
 public class MedirTiempo implements Serializable {
-    private Long tiempo;
+    private int tiempo;
 
-    public MedirTiempo(Long tiempo){
+    public MedirTiempo(int tiempo){
         this.tiempo = tiempo;
     }
 
@@ -13,11 +13,11 @@ public class MedirTiempo implements Serializable {
         cronometro.iniciar(this);
     }
 
-    public Long getTiempo() {
+    public int getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(Long tiempo) {
+    public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
     }
 }
