@@ -27,7 +27,7 @@ public class ProjectManagement{
         controladorPrincipal = new ControladorPrincipal();
         ventanaPrincipal = new VentanaPrincipal();
         ventanaPrincipal.setControlador(controladorPrincipal);
-        controladorPrincipal.setVista(ventanaPrincipal);
+        controladorPrincipal.setVentana(ventanaPrincipal);
         SwingUtilities.invokeLater(() -> {
             ventanaPrincipal.setVisible(true);
         });

@@ -27,6 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public void setControlador(ControladorPrincipal controlador) {
         this.controlador = controlador;
+        jMenuItemNuevaTarea.addActionListener(controlador);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,13 +45,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPaneInfo = new javax.swing.JScrollPane();
         jPanelInfo = new javax.swing.JPanel();
+        jLabelResultado = new javax.swing.JLabel();
         jScrollPaneEstadistica = new javax.swing.JScrollPane();
+        jToolBar1 = new javax.swing.JToolBar();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuArchivo = new javax.swing.JMenu();
         jMenuItemImportar = new javax.swing.JMenuItem();
         jMenuItemExportar = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
         jMenuItemAcercaDe = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItemNuevaTarea = new javax.swing.JMenuItem();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -79,12 +84,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setToolTipText("");
 
+        jPanelInfo.setLayout(new java.awt.GridLayout());
+
+        jLabelResultado.setText("Resultado");
+        jPanelInfo.add(jLabelResultado);
+
         jScrollPaneInfo.setViewportView(jPanelInfo);
 
         jSplitPane1.setLeftComponent(jScrollPaneInfo);
         jSplitPane1.setRightComponent(jScrollPaneEstadistica);
 
         jSplitPane2.setRightComponent(jSplitPane1);
+
+        jToolBar1.setRollover(true);
 
         jMenuArchivo.setText("Archivo");
 
@@ -110,17 +122,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuAyuda);
 
+        jMenu1.setText("Tarea");
+
+        jMenuItemNuevaTarea.setText("Nueva Tarea");
+        jMenu1.add(jMenuItemNuevaTarea);
+
+        jMenuBar.add(jMenu1);
+
         setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,12 +160,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel jLabelResultado;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuArchivo;
     private javax.swing.JMenu jMenuAyuda;
     public javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItemAcercaDe;
     public javax.swing.JMenuItem jMenuItemExportar;
     public javax.swing.JMenuItem jMenuItemImportar;
+    public javax.swing.JMenuItem jMenuItemNuevaTarea;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanelInfo;
     private javax.swing.JScrollPane jScrollPaneArbol;
@@ -150,6 +176,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public javax.swing.JScrollPane jScrollPaneInfo;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JToolBar jToolBar1;
     public javax.swing.JTree jTreeProyectos;
     // End of variables declaration//GEN-END:variables
 }

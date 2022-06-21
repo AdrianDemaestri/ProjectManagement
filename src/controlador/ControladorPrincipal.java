@@ -17,22 +17,26 @@ import vista.VentanaPrincipal;
  */
 public class ControladorPrincipal implements ActionListener{
     
-    private vista.VentanaPrincipal vista;
+    private vista.VentanaPrincipal ventana;
     CronoPanel cronoPanel;
     ControladorCronoPanel controladorCronoPanel;
     
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(ventana.jMenuItemNuevaTarea))
+            new vista.DialogNuevaTarea(ventana, true).setVisible(true);
+    }
 
-    public void setVista(VentanaPrincipal vista) {
-        this.vista = vista;
+    public void setVentana(VentanaPrincipal ventana) {
+        this.ventana = ventana;
         inicializarVista();
     }
     
     void inicializarVista(){
         iniciarIconos();
         cronometro();
-        vista.jPanelInfo.add(cronoPanel);
+        ventana.jPanelInfo.add(cronoPanel);
+        
         
     }
     
@@ -46,7 +50,7 @@ public class ControladorPrincipal implements ActionListener{
     }
     
     private void iniciarIconos(){
-        vista.jMenuItemImportar.setIcon(new FlatSVGIcon("imagenes/import.svg"));
-        vista.jMenuItemExportar.setIcon(new FlatSVGIcon("imagenes/export.svg"));
+        ventana.jMenuItemImportar.setIcon(new FlatSVGIcon("imagenes/import.svg"));
+        ventana.jMenuItemExportar.setIcon(new FlatSVGIcon("imagenes/export.svg"));
     }
   }
