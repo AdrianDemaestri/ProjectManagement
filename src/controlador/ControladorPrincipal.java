@@ -7,6 +7,11 @@ package controlador;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Cronometro;
 import modelo.MedirTiempo;
 import vista.CronoPanel;
@@ -26,10 +31,21 @@ public class ControladorPrincipal implements ActionListener{
 
     public ControladorPrincipal( modelo.Modelo modelo) {
         this.modelo = modelo;
-        cronometro = new Cronometro(new MedirTiempo());
+        cronometro = new Cronometro();
+        iniciar();
     }
-
-    public ControladorPrincipal() {}
+    
+    public ControladorPrincipal( modelo.Modelo modelo, Cronometro cronometro) {
+        this.modelo = modelo;
+        this.cronometro = cronometro;
+        iniciar();
+    }
+    
+    private void iniciar(){
+        if (modelo.getProyectos().size() == 0)
+            llamarNuevoProyecto();
+        
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -38,7 +54,6 @@ public class ControladorPrincipal implements ActionListener{
         
         if(e.getSource().equals(ventana.jMenuItemNuevoProyecto))
             llamarNuevoProyecto();
-        
     }
     
     private void llamarNuevaTarea(){
@@ -48,9 +63,10 @@ public class ControladorPrincipal implements ActionListener{
     }
     
     private void llamarNuevoProyecto(){
-        ControladorNuevoProyecto c = new ControladorNuevoProyecto(cronometro);
+        ControladorNuevoProyecto c = new ControladorNuevoProyecto(modelo,cronometro);
         c.setVentana(new vista.DialogNuevoProyecto(ventana,c, true));
         c.setVisible(true);
+        System.out.println(modelo.getProyectos());
     }
 
     public void setVentana(VentanaPrincipal ventana) {
@@ -59,6 +75,11 @@ public class ControladorPrincipal implements ActionListener{
     }
     
     void inicializarVista(){
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {modelo.escribir();}
+            
+        });
         iniciarIconos();
     }
     

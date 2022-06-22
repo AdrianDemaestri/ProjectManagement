@@ -6,6 +6,7 @@ package modelo;
 
 import java.io.*;
 import java.util.ArrayList;
+import modelo.Proyecto;
 
 /**
  *
@@ -22,14 +23,21 @@ public class Modelo {
         try {
             if(!archivo.exists())
                 archivo.createNewFile();
-            else
+            else{
                 leer();
+            }
+                
         }catch (IOException e) {}
     }
 
-    public void escribir() throws IOException {
-        ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(archivo));
-        escritor.writeObject(proyectos);
+    public void escribir(){
+        try {
+            archivo.createNewFile();
+            ObjectOutputStream escritor = new ObjectOutputStream(new FileOutputStream(this.archivo));
+            for (Proyecto proyecto : proyectos)
+                escritor.writeObject(proyecto);
+        }catch(IOException e){}
+        
     }
 
     public void escribir(ArrayList<Proyecto> proyectos){
@@ -46,11 +54,14 @@ public class Modelo {
         try {
             ObjectInputStream lector = new ObjectInputStream(new FileInputStream(this.archivo));
             while (true){
-                Proyecto p = (Proyecto)lector.readObject();
-                proyectos.add(p);
+                System.out.println(proyectos);
+                
+                
+                System.out.println("aca");
+                proyectos.add((modelo.Proyecto)lector.readObject());
             }
-        } catch (IOException e) {
-        } catch (ClassNotFoundException e) {}
+        } catch (IOException e) { System.out.println("a");
+        } catch (ClassNotFoundException e) {System.out.println("b");}
     }
     public ArrayList<Proyecto> getProyectos() {
         return proyectos;

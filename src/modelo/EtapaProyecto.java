@@ -14,6 +14,10 @@ public class EtapaProyecto extends MedirTiempo implements Serializable{
     public EtapaProyecto(int tiempo){
         super(tiempo);
     }
+    
+    public EtapaProyecto(){}
+    
+    
     public EtapaProyecto(EtapaProyecto etapa){
         super(etapa.getTiempo());
     }

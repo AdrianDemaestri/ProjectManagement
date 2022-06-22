@@ -22,6 +22,7 @@ public final class ControladorCronoPanel implements ActionListener{
     FlatSVGIcon play  = new FlatSVGIcon("imagenes/threadRunning.svg",20,20);;
     FlatSVGIcon pause = new FlatSVGIcon("imagenes/pause.svg",20,20);
     modelo.Cronometro cronometro;
+    MedirTiempo medirTiempo;
     boolean iniciado = false;
     
 
@@ -39,6 +40,13 @@ public final class ControladorCronoPanel implements ActionListener{
         setCronometro(cronometro);
         initConponents();
     }
+    
+    public ControladorCronoPanel(CronoPanel cronoPanel, Cronometro cronometro, MedirTiempo medirTiempo) {
+        setCronoPanel(cronoPanel);
+        setCronometro(cronometro);
+        setMedirTiempo(medirTiempo);
+        initConponents();
+    }
 
     public ControladorCronoPanel(Cronometro cronometro) {
         setCronometro(cronometro);
@@ -46,6 +54,12 @@ public final class ControladorCronoPanel implements ActionListener{
     }
     
     private void initConponents(){}
+
+    public void setMedirTiempo(MedirTiempo medirTiempo) {
+        this.medirTiempo = medirTiempo;
+    }
+    
+    
     
     public void setCronometro(Cronometro cronometro) {
         this.cronometro = cronometro;
@@ -83,14 +97,11 @@ public final class ControladorCronoPanel implements ActionListener{
             if (cronometro != null) {
                 if (cronoPanel.jButton.getIcon().equals(pause)) {
                     if (!iniciado){
-                        System.out.println("iniciar");
-                        cronometro.iniciar(new MedirTiempo(), cronoPanel.jTextField1);
+                        cronometro.iniciar(medirTiempo, cronoPanel.jTextField1);
                         iniciado = true;
                     }
-                    else{
+                    else
                         System.out.println("play");
-                        cronometro.play();
-                    }
                 }
                 else{
                     System.out.println("display");

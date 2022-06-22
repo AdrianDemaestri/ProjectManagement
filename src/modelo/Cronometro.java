@@ -21,6 +21,14 @@ public class Cronometro extends javax.swing.JFrame{
         time = new Timer(1000,acciones);
     }
     
+    public Cronometro(){
+        this.horas = 0;
+        this.minutos = 0;
+        this.segundos = 0;
+//        this.objeto = new MedirTiempo();
+        time = new Timer(1000,acciones);
+    }
+    
     
     
     public Cronometro(int horas, int minutos, int segundos, MedirTiempo objeto){
@@ -41,15 +49,11 @@ public class Cronometro extends javax.swing.JFrame{
     
     public void iniciar(MedirTiempo obj, JTextField tiempo){
         jTextField = tiempo;
-        establecerTiempo();
-        if(this.objeto == obj){
-           play();
-        }
-        if(this.objeto != obj) {
+        if(this.objeto != obj && objeto != null) { 
             this.objeto.setTiempo(Tiempo.pasarTimeASegundos(LocalTime.of(horas,minutos,segundos)));
             stop();
-            play();
         }
+        play();
      }
     
     public void play(){
@@ -90,7 +94,8 @@ public class Cronometro extends javax.swing.JFrame{
     public void stop(){
         if(time.isRunning())
             time.stop();
-        this.objeto.setTiempo(Tiempo.pasarTimeASegundos(LocalTime.of(horas,minutos,segundos)));
+        if (objeto != null )
+            this.objeto.setTiempo(Tiempo.pasarTimeASegundos(LocalTime.of(horas,minutos,segundos)));
         horas = 0;
         minutos = 0;
         segundos = 0;
@@ -107,4 +112,13 @@ public class Cronometro extends javax.swing.JFrame{
     public MedirTiempo getObjeto() {
         return objeto;
     }
+
+    public void setObjeto(MedirTiempo objeto) {
+        stop();
+        this.objeto = objeto;
+    }
+    
+    
+    
+    
 }

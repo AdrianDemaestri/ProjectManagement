@@ -36,6 +36,15 @@ public class Proyecto implements Serializable, Informe{
         this.tareas = new ArrayList<Tarea>();
     }
 
+    public Proyecto(String nombre, EtapaProyecto analisis) {
+        this.nombre = nombre;
+        this.analisis = analisis;
+    }
+    
+    
+
+    public Proyecto() {}
+
     public String getNombre() {
         return nombre;
     }
