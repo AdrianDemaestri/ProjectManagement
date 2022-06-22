@@ -45,7 +45,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         jScrollPaneInfo = new javax.swing.JScrollPane();
         jPanelInfo = new javax.swing.JPanel();
-        jLabelResultado = new javax.swing.JLabel();
         jScrollPaneEstadistica = new javax.swing.JScrollPane();
         jToolBar1 = new javax.swing.JToolBar();
         jMenuBar = new javax.swing.JMenuBar();
@@ -84,11 +83,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setToolTipText("");
 
-        jPanelInfo.setLayout(new java.awt.GridLayout());
-
-        jLabelResultado.setText("Resultado");
-        jPanelInfo.add(jLabelResultado);
-
+        jPanelInfo.setLayout(new java.awt.BorderLayout());
         jScrollPaneInfo.setViewportView(jPanelInfo);
 
         jSplitPane1.setLeftComponent(jScrollPaneInfo);
@@ -160,7 +155,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel jLabelResultado;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuArchivo;
     private javax.swing.JMenu jMenuAyuda;
