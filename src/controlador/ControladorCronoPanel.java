@@ -5,8 +5,10 @@
 package controlador;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import main.TextPrompt;
 import modelo.Cronometro;
 import modelo.MedirTiempo;
 import vista.CronoPanel;
@@ -43,9 +45,6 @@ public final class ControladorCronoPanel implements ActionListener{
         initConponents();
     }
     
-    
-    
-    
     private void initConponents(){}
     
     public void setCronometro(Cronometro cronometro) {
@@ -54,7 +53,14 @@ public final class ControladorCronoPanel implements ActionListener{
     
     public void setCronoPanel(CronoPanel cronoPanel) {
         this.cronoPanel = cronoPanel;
+        placeholder();
         instanciarIconos();
+    }
+    
+    private void placeholder(){
+        TextPrompt placeholder = new TextPrompt("HH:MM:SS", cronoPanel.jTextField1);
+        placeholder.changeAlpha(0.75f);
+        placeholder.changeStyle(Font.ITALIC);
     }
     
     private void instanciarIconos(){
@@ -80,36 +86,32 @@ public final class ControladorCronoPanel implements ActionListener{
                         System.out.println("iniciar");
                         cronometro.iniciar(new MedirTiempo(), cronoPanel.jTextField1);
                         iniciado = true;
-                        
                     }
                     else{
                         System.out.println("play");
                         cronometro.play();
                     }
-                        
                 }
                 else{
                     System.out.println("display");
                     cronometro.display();
                 }
-                    
             }
             else
                 System.out.println("nulo");
-            
         }
         else if(e.getSource().equals(cronoPanel.jCheckBox)){
             if (cronoPanel.jCheckBox.isSelected()){
-                cronoPanel.jLabel.setEnabled(false);
                 cronoPanel.jButton.setEnabled(true);
                 cronoPanel.jTextField1.setEnabled(false);
             }
             else{
-                cronoPanel.jLabel.setEnabled(true);
                 cronoPanel.jButton.setEnabled(false);
                 cronoPanel.jTextField1.setEnabled(true);
             }
         }
+        else if (e.getSource().equals(cronoPanel.jTextField1))
+            System.out.println("Evento");
             
     }
     
