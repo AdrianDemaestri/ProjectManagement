@@ -7,6 +7,8 @@ package controlador;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.Cronometro;
+import modelo.MedirTiempo;
 import vista.CronoPanel;
 import vista.VentanaPrincipal;
 
@@ -20,6 +22,18 @@ public class ControladorPrincipal implements ActionListener{
     private vista.VentanaPrincipal ventana;
     CronoPanel cronoPanel;
     ControladorCronoPanel controladorCronoPanel;
+    modelo.Cronometro cronometro;
+    modelo.Modelo modelo;
+
+    public ControladorPrincipal( modelo.Modelo modelo) {
+        this.modelo = modelo;
+        
+    }
+
+    public ControladorPrincipal() {}
+    
+    
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -34,20 +48,30 @@ public class ControladorPrincipal implements ActionListener{
     
     void inicializarVista(){
         iniciarIconos();
-        cronometro();
+        setCronometro(new Cronometro(new MedirTiempo()));
+        cronometroPanel();
         ventana.jPanelInfo.add(cronoPanel);
-        
-        
     }
     
-    private void cronometro(){
-         cronoPanel = new CronoPanel();
-         controladorCronoPanel = new ControladorCronoPanel();
-        
-        
+    private void cronometroPanel(){
+        cronoPanel = new CronoPanel();
+        if (controladorCronoPanel == null)
+            controladorCronoPanel = new ControladorCronoPanel(cronoPanel,cronometro);
+        else
+            controladorCronoPanel.setCronoPanel(cronoPanel);
+       
         cronoPanel.setControlador(controladorCronoPanel);
-        controladorCronoPanel.setCronoPanel(cronoPanel);
     }
+
+    public void setCronometro(Cronometro cronometro) {
+        this.cronometro = cronometro;
+        if (controladorCronoPanel == null)
+            controladorCronoPanel = new ControladorCronoPanel(cronometro);
+        else
+            controladorCronoPanel.setCronometro(cronometro);
+    }
+    
+    
     
     private void iniciarIconos(){
         ventana.jMenuItemImportar.setIcon(new FlatSVGIcon("imagenes/import.svg"));

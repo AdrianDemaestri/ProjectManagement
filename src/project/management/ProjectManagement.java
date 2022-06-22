@@ -24,6 +24,7 @@ public class ProjectManagement{
         
     }
     public static void main2(){
+//        modelo = new Modelo("data/datos.pymg");
         controladorPrincipal = new ControladorPrincipal();
         ventanaPrincipal = new VentanaPrincipal();
         ventanaPrincipal.setControlador(controladorPrincipal);

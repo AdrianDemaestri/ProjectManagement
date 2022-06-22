@@ -7,28 +7,54 @@ package controlador;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import modelo.Cronometro;
+import modelo.MedirTiempo;
 import vista.CronoPanel;
 
 /**
  *
  * @author Adrian Demaestri
  */
-public class ControladorCronoPanel implements ActionListener{
+public final class ControladorCronoPanel implements ActionListener{
     vista.CronoPanel cronoPanel;
-    FlatSVGIcon play;
-    FlatSVGIcon pause;
+    FlatSVGIcon play  = new FlatSVGIcon("imagenes/threadRunning.svg",20,20);;
+    FlatSVGIcon pause = new FlatSVGIcon("imagenes/pause.svg",20,20);
+    modelo.Cronometro cronometro;
+    boolean iniciado = false;
+    
 
     public ControladorCronoPanel() {
-        play = new FlatSVGIcon("imagenes/threadRunning.svg",20,20);
-        pause = new FlatSVGIcon("imagenes/pause.svg",20,20);
+        initConponents();
+    }
+
+    public ControladorCronoPanel(CronoPanel cronoPanel) {
+        setCronoPanel(cronoPanel);
+        initConponents();
+    }
+
+    public ControladorCronoPanel(CronoPanel cronoPanel, Cronometro cronometro) {
+        setCronoPanel(cronoPanel);
+        setCronometro(cronometro);
+        initConponents();
+    }
+
+    public ControladorCronoPanel(Cronometro cronometro) {
+        setCronometro(cronometro);
+        initConponents();
+    }
+    
+    
+    
+    
+    private void initConponents(){}
+    
+    public void setCronometro(Cronometro cronometro) {
+        this.cronometro = cronometro;
     }
     
     public void setCronoPanel(CronoPanel cronoPanel) {
         this.cronoPanel = cronoPanel;
         instanciarIconos();
-        
     }
     
     private void instanciarIconos(){
@@ -45,8 +71,32 @@ public class ControladorCronoPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if(e.getSource().equals(cronoPanel.jButton)){
             cambiarIcono();
+            if (cronometro != null) {
+                if (cronoPanel.jButton.getIcon().equals(pause)) {
+                    if (!iniciado){
+                        System.out.println("iniciar");
+                        cronometro.iniciar(new MedirTiempo(), cronoPanel.jTextField1);
+                        iniciado = true;
+                        
+                    }
+                    else{
+                        System.out.println("play");
+                        cronometro.play();
+                    }
+                        
+                }
+                else{
+                    System.out.println("display");
+                    cronometro.display();
+                }
+                    
+            }
+            else
+                System.out.println("nulo");
+            
         }
         else if(e.getSource().equals(cronoPanel.jCheckBox)){
             if (cronoPanel.jCheckBox.isSelected()){
