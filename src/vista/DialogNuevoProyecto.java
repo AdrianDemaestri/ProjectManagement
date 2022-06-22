@@ -5,6 +5,7 @@
 package vista;
 
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
+import controlador.ControladorNuevoProyecto;
 
 /**
  *
@@ -12,13 +13,24 @@ import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
  */
 public class DialogNuevoProyecto extends javax.swing.JDialog {
 
-    /**
-     * Creates new form DialogNuevoProyecto
-     */
-    public DialogNuevoProyecto(java.awt.Frame parent, boolean modal) {
+    controlador.ControladorNuevoProyecto controller;
+    
+    public DialogNuevoProyecto(java.awt.Frame parent,ControladorNuevoProyecto controller, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(parent);
+        setTitle("Nuevo Proyecto");
+        setController(controller);
     }
+
+    public void setController(ControladorNuevoProyecto controller) {
+        this.controller = controller;
+        jButtonAtras.addActionListener(controller);
+        jButtonCrear.addActionListener(controller);
+        jButtonSiguiente.addActionListener(controller);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,14 +44,14 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
         jPanelContenedor = new javax.swing.JPanel();
         jPanelNombre = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jButtonSiguiente = new javax.swing.JButton();
         jPanelAnalisis = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cronoPanel1 = new vista.CronoPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        cronoPanel = new vista.CronoPanel();
+        jButtonCrear = new javax.swing.JButton();
+        jButtonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -47,13 +59,13 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
 
         jLabel1.setText("Nombre Proyecto:");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextFieldNombreActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Siguiente");
+        jButtonSiguiente.setText("Siguiente");
 
         javax.swing.GroupLayout jPanelNombreLayout = new javax.swing.GroupLayout(jPanelNombre);
         jPanelNombre.setLayout(jPanelNombreLayout);
@@ -65,10 +77,10 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
                     .addGroup(jPanelNombreLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 270, Short.MAX_VALUE))
-                    .addComponent(jTextField1)
+                    .addComponent(jTextFieldNombre)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNombreLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonSiguiente)))
                 .addContainerGap())
         );
         jPanelNombreLayout.setVerticalGroup(
@@ -77,21 +89,21 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonSiguiente)
                 .addContainerGap())
         );
 
-        jPanelContenedor.add(jPanelNombre, "card2");
+        jPanelContenedor.add(jPanelNombre, "nombre");
 
         jLabel2.setText("Analisis:");
 
         jLabel3.setText("Tiempo de Analisis");
 
-        jButton2.setText("Crear");
+        jButtonCrear.setText("Crear");
 
-        jButton3.setText("Atras");
+        jButtonAtras.setText("Atras");
 
         javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
         jPanelAnalisis.setLayout(jPanelAnalisisLayout);
@@ -109,14 +121,14 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
                                 .addGroup(jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelAnalisisLayout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(cronoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cronoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel3))))
                         .addGap(0, 94, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAnalisisLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonAtras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(jButtonCrear)))
                 .addContainerGap())
         );
         jPanelAnalisisLayout.setVerticalGroup(
@@ -127,79 +139,37 @@ public class DialogNuevoProyecto extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cronoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cronoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonCrear)
+                    .addComponent(jButtonAtras))
                 .addContainerGap())
         );
 
-        jPanelContenedor.add(jPanelAnalisis, "card3");
+        jPanelContenedor.add(jPanelAnalisis, "analisis");
 
         getContentPane().add(jPanelContenedor, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DialogNuevoProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DialogNuevoProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DialogNuevoProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DialogNuevoProyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FlatCarbonIJTheme.setup();
-                DialogNuevoProyecto dialog = new DialogNuevoProyecto(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private vista.CronoPanel cronoPanel1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public vista.CronoPanel cronoPanel;
+    public javax.swing.JButton jButtonAtras;
+    public javax.swing.JButton jButtonCrear;
+    public javax.swing.JButton jButtonSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanelAnalisis;
-    private javax.swing.JPanel jPanelContenedor;
-    private javax.swing.JPanel jPanelNombre;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JPanel jPanelAnalisis;
+    public javax.swing.JPanel jPanelContenedor;
+    public javax.swing.JPanel jPanelNombre;
+    public javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,6 +28,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void setControlador(ControladorPrincipal controlador) {
         this.controlador = controlador;
         jMenuItemNuevaTarea.addActionListener(controlador);
+        jMenuItemNuevoProyecto.addActionListener(controlador);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,10 +52,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuArchivo = new javax.swing.JMenu();
         jMenuItemImportar = new javax.swing.JMenuItem();
         jMenuItemExportar = new javax.swing.JMenuItem();
+        jMenuProyecto = new javax.swing.JMenu();
+        jMenuItemNuevoProyecto = new javax.swing.JMenuItem();
+        jMenuTarea = new javax.swing.JMenu();
+        jMenuItemNuevaTarea = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
         jMenuItemAcercaDe = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItemNuevaTarea = new javax.swing.JMenuItem();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -70,7 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Project Menegement");
+        setTitle("Project Menegement UAA");
         setAutoRequestFocus(false);
 
         jSplitPane2.setDividerLocation(300);
@@ -105,6 +108,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuBar.add(jMenuArchivo);
 
+        jMenuProyecto.setText("Proyecto");
+
+        jMenuItemNuevoProyecto.setText("Nuevo Proyecto");
+        jMenuProyecto.add(jMenuItemNuevoProyecto);
+
+        jMenuBar.add(jMenuProyecto);
+
+        jMenuTarea.setText("Tarea");
+
+        jMenuItemNuevaTarea.setText("Nueva Tarea");
+        jMenuTarea.add(jMenuItemNuevaTarea);
+
+        jMenuBar.add(jMenuTarea);
+
         jMenuAyuda.setText("Ayuda");
 
         jMenuItemAcercaDe.setText("Acerca de ");
@@ -116,13 +133,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuAyuda.add(jMenuItemAcercaDe);
 
         jMenuBar.add(jMenuAyuda);
-
-        jMenu1.setText("Tarea");
-
-        jMenuItemNuevaTarea.setText("Nueva Tarea");
-        jMenu1.add(jMenuItemNuevaTarea);
-
-        jMenuBar.add(jMenu1);
 
         setJMenuBar(jMenuBar);
 
@@ -138,7 +148,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,7 +165,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuArchivo;
     private javax.swing.JMenu jMenuAyuda;
     public javax.swing.JMenuBar jMenuBar;
@@ -163,6 +172,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuItemExportar;
     public javax.swing.JMenuItem jMenuItemImportar;
     public javax.swing.JMenuItem jMenuItemNuevaTarea;
+    public javax.swing.JMenuItem jMenuItemNuevoProyecto;
+    private javax.swing.JMenu jMenuProyecto;
+    private javax.swing.JMenu jMenuTarea;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanelInfo;
     private javax.swing.JScrollPane jScrollPaneArbol;

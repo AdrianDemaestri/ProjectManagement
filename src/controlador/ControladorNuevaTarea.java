@@ -6,16 +6,29 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import vista.DialogNuevaTarea;
 
 /**
  *
  * @author Adrian Demaestri
  */
 public class ControladorNuevaTarea implements ActionListener {
+    
+    vista.DialogNuevaTarea ventana;
+    
 
+    public void setVentana(DialogNuevaTarea ventana) {
+        this.ventana = ventana;
+    }
+ 
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
+    
+    public void setVisible(boolean b){ventana.setVisible(b);}
+    
+    
+    
 
 }

@@ -26,7 +26,7 @@ public class ControladorPrincipal implements ActionListener{
 
     public ControladorPrincipal( modelo.Modelo modelo) {
         this.modelo = modelo;
-        
+        cronometro = new Cronometro(new MedirTiempo());
     }
 
     public ControladorPrincipal() {}
@@ -34,7 +34,23 @@ public class ControladorPrincipal implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(ventana.jMenuItemNuevaTarea))
-            new vista.DialogNuevaTarea(ventana, true).setVisible(true);
+            llamarNuevaTarea();
+        
+        if(e.getSource().equals(ventana.jMenuItemNuevoProyecto))
+            llamarNuevoProyecto();
+        
+    }
+    
+    private void llamarNuevaTarea(){
+        ControladorNuevaTarea c = new ControladorNuevaTarea();
+        c.setVentana(new vista.DialogNuevaTarea(ventana,c, true));
+        c.setVisible(true);
+    }
+    
+    private void llamarNuevoProyecto(){
+        ControladorNuevoProyecto c = new ControladorNuevoProyecto(cronometro);
+        c.setVentana(new vista.DialogNuevoProyecto(ventana,c, true));
+        c.setVisible(true);
     }
 
     public void setVentana(VentanaPrincipal ventana) {
