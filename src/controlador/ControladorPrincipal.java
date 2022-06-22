@@ -57,7 +57,7 @@ public class ControladorPrincipal implements ActionListener{
     }
     
     private void llamarNuevaTarea(){
-        ControladorNuevaTarea c = new ControladorNuevaTarea();
+        ControladorNuevaTarea c = new ControladorNuevaTarea(modelo);
         c.setVentana(new vista.DialogNuevaTarea(ventana,c, true));
         c.setVisible(true);
     }

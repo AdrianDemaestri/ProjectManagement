@@ -101,10 +101,9 @@ public final class ControladorCronoPanel implements ActionListener{
                         iniciado = true;
                     }
                     else
-                        System.out.println("play");
+                        cronometro.play();
                 }
                 else{
-                    System.out.println("display");
                     cronometro.display();
                 }
             }

@@ -65,15 +65,15 @@ public class Cronometro extends javax.swing.JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 segundos++;
-                if(segundos == 59){
+                if(segundos == 60){
                     minutos++;
                     segundos = 0;
                 }
-                if(minutos == 59){
+                if(minutos == 60){
                     horas++;
                     minutos = 0;
                 }
-                if(horas == 23)
+                if(horas == 24)
                     horas = 0;
                 
                 actualizarTiempo();

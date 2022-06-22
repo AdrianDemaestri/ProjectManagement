@@ -24,7 +24,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
     public void setController(ActionListener controller) {
         this.controller = controller;
         jButtonAtras.addActionListener(controller);
-        jButtonFinalizar.addActionListener(controller);
+        jButtonCrear.addActionListener(controller);
         jButtonSiguiente.addActionListener(controller);
     }
     
@@ -50,7 +50,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
         jButtonSiguiente = new javax.swing.JButton();
         jPanelTareaPadre = new javax.swing.JPanel();
         jCheckBox = new javax.swing.JCheckBox();
-        jButtonFinalizar = new javax.swing.JButton();
+        jButtonCrear = new javax.swing.JButton();
         jComboBox = new javax.swing.JComboBox<>();
         jButtonAtras = new javax.swing.JButton();
 
@@ -122,7 +122,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
             }
         });
 
-        jButtonFinalizar.setText("Finalizar");
+        jButtonCrear.setText("Crear");
 
         jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -141,7 +141,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonAtras)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonFinalizar)
+                .addComponent(jButtonCrear)
                 .addContainerGap())
             .addGroup(jPanelTareaPadreLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
@@ -159,7 +159,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
                 .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                 .addGroup(jPanelTareaPadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonFinalizar)
+                    .addComponent(jButtonCrear)
                     .addComponent(jButtonAtras))
                 .addContainerGap())
         );
@@ -182,14 +182,14 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtonAtras;
-    public javax.swing.JButton jButtonFinalizar;
+    public javax.swing.JButton jButtonCrear;
     public javax.swing.JButton jButtonSiguiente;
     public javax.swing.JCheckBox jCheckBox;
     public javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanelContenedor;
+    public javax.swing.JPanel jPanelContenedor;
     public javax.swing.JPanel jPanelNombre;
     public javax.swing.JPanel jPanelTareaPadre;
     public javax.swing.JScrollPane jScrollPane1;

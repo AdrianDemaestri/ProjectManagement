@@ -78,7 +78,7 @@ public class Proyecto implements Serializable, Informe{
 
     @Override
     public String toString() {
-        return "nombre=" + nombre + '\n';
+        return nombre;
     }
 
     // Hcaer metodos para calcular el tiempo total de todas las tareas
@@ -145,4 +145,7 @@ public class Proyecto implements Serializable, Informe{
     public int tiempoPrueba(){
         return getPruebas().getTiempo();
     }
+    
+    
+    
 }
