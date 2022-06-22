@@ -20,7 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         
-        setIconImage(new ImageIcon(getClass().getResource("/imagenes/hora.png")).getImage());
+        setIconImage(new ImageIcon("imagenes/hora.png").getImage());
         setSize(70*16,70*9);
         setLocationRelativeTo(null);
     }
