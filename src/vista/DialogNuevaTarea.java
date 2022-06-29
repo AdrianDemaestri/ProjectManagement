@@ -193,7 +193,7 @@ public class DialogNuevaTarea extends javax.swing.JDialog {
     public javax.swing.JPanel jPanelNombre;
     public javax.swing.JPanel jPanelTareaPadre;
     public javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextDescripcion;
+    public javax.swing.JTextArea jTextDescripcion;
     public javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 }

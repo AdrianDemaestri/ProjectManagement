@@ -6,15 +6,13 @@ package modelo;
 
 import java.io.*;
 import java.util.ArrayList;
-import modelo.Proyecto;
-
 /**
  *
  * @author ValhallaCode
  */
 public class Modelo {
      private File archivo;
-     private String extencion;
+     private final String extencion = "pjmg";
      ArrayList<Proyecto> proyectos;
 
     public Modelo(String ubicacion){
@@ -23,10 +21,8 @@ public class Modelo {
         try {
             if(!archivo.exists())
                 archivo.createNewFile();
-            else{
-                leer();
-            }
-                
+            else
+                leer();                
         }catch (IOException e) {}
     }
 
@@ -53,19 +49,11 @@ public class Modelo {
         proyectos.clear();
         try {
             ObjectInputStream lector = new ObjectInputStream(new FileInputStream(this.archivo));
-            while (true){
-                System.out.println(proyectos);
-                
-                
-                System.out.println("aca");
-                proyectos.add((modelo.Proyecto)lector.readObject());
-            }
-        } catch (IOException e) { System.out.println("a");
-        } catch (ClassNotFoundException e) {System.out.println("b");}
+            while (true) proyectos.add((modelo.Proyecto)lector.readObject()); 
+        }catch (IOException | ClassNotFoundException e) {}
     }
-    public ArrayList<Proyecto> getProyectos() {
-        return proyectos;
-    }
+    
+    public ArrayList<Proyecto> getProyectos(){return proyectos;}
 }
 
 

@@ -1,37 +1,26 @@
-.data0.chart-pie { -fx-pie-color: turquoise; }
-.data1.chart-pie { -fx-pie-color: aquamarine; }
-.data2.chart-pie { -fx-pie-color: cornflowerblue; }
-.data3.chart-pie { -fx-pie-color: dodgerblue; }
-.data4.chart-pie { -fx-pie-color: cadetblue; }
-.data5.chart-pie { -fx-pie-color: navy; }
-.data6.chart-pie { -fx-pie-color: deepskyblue; }
+.data0.chart-pie { -fx-pie-color: steelblue ; }
+.data1.chart-pie { -fx-pie-color:  cornflowerblue; }
+.data2.chart-pie { -fx-pie-color:  deepskyblue; }
+.data3.chart-pie { -fx-pie-color: royalblue ; }
+.data4.chart-pie { -fx-pie-color: navy; }
+.data5.chart-pie { -fx-pie-color: dodgerblue ; }
+.data6.chart-pie { -fx-pie-color: aquamarine; }
 .data7.chart-pie { -fx-pie-color: cyan; }
-.data8.chart-pie { -fx-pie-color: steelblue; }
+.data8.chart-pie { -fx-pie-color: turquoise; }
 .data9.chart-pie { -fx-pie-color: teal; }
-.data10.chart-pie { -fx-pie-color: royalblue; }
-
-.node {-fx-background-color: transparent}
-
-.nodes {-fx-background-color: transparent}
-
-.pane {-fx-background-color: transparent}
-
-.root {-fx-background-color: transparent}
-
-.scene {-fx-background-color: transparent}
-
-.stage {-fx-background-color: transparent}
-
-.jfxpanel {-fx-background-color: transparent}
+.data10.chart-pie { -fx-pie-color: cadetblue ; }
 
 .chart-legend {
    -fx-background-color:  transparent;
+   -fx-text-fill: white;
+}
+.chart-title {
+    -fx-text-fill: white;
+    -fx-background-color: white         
 }
 
-.chart {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
-}
+.chart-legend-item{-fx-text-fill: white;}
 
-
-
+.chart-pie-label-line {-fx-fill: white;}
+ 
+.chart-pie-label {-fx-fill: white;}

@@ -7,7 +7,11 @@ package controlador;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import modelo.Proyecto;
+
+import jdk.swing.interop.SwingInterOpUtils;
 import modelo.Modelo;
+import modelo.Tarea;
 import vista.DialogNuevaTarea;
 
 /**
@@ -17,22 +21,19 @@ import vista.DialogNuevaTarea;
 public class ControladorNuevaTarea implements ActionListener {
     
     vista.DialogNuevaTarea ventana;
-    modelo.Modelo model;
+    ControladorPrincipal controladorPrincipal;
+    Proyecto proyectoActivo;
 
-    public ControladorNuevaTarea(Modelo modelo) {
-        this.model = modelo;
-    }
-    
-    public ControladorNuevaTarea(DialogNuevaTarea ventana, Modelo modelo) {
-        this.model = modelo;
-        setVentana(ventana);
+    public ControladorNuevaTarea(ControladorPrincipal controladorPrincipal) {
+        this.controladorPrincipal = controladorPrincipal;
     }
     
     public void setVentana(DialogNuevaTarea ventana) {
         this.ventana = ventana;
         ventana.jComboBox.removeAll();
-        for (modelo.Proyecto proyecto : model.getProyectos())
-            ventana.jComboBox.addItem(proyecto.getNombre());
+        setProyectoActivo();
+        for (Tarea tarea : proyectoActivo.getTareas() )
+            ventana.jComboBox.addItem(tarea.getNombre());
     }
  
     @Override
@@ -43,9 +44,22 @@ public class ControladorNuevaTarea implements ActionListener {
         else if(e.getSource().equals(ventana.jButtonAtras))
             ((CardLayout)ventana.jPanelContenedor.getLayout()).show(ventana.jPanelContenedor, "nombre");
     }
-    
-    
-    public void setVisible(boolean b){ventana.setVisible(b);}
+
+    public void llamar(){
+        setVentana(new vista.DialogNuevaTarea(controladorPrincipal.ventana,this, true));
+        ventana.setVisible(true);
+    }
+
+    private void crear(){
+        Tarea tarea =new Tarea(ventana.jTextNombre.getText(),ventana.jTextDescripcion.getText());
+        if(ventana.jCheckBox.isSelected())
+            tarea.setTareaPadre((String) ventana.jComboBox.getSelectedItem());
+    }
+
+
+
+
+
     
     
     

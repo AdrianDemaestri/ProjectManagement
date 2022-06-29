@@ -5,7 +5,9 @@
 package modelo;
 
 import javax.sound.sampled.Line;
+import javax.swing.tree.MutableTreeNode;
 import java.io.Serializable;
+import java.sql.Array;
 import java.util.ArrayList;
 import java.time.LocalTime;
 
@@ -14,7 +16,7 @@ import java.time.LocalTime;
  * @author ValhallaCode
  */
 
-public class Proyecto implements Serializable, Informe{
+public class Proyecto implements Serializable, Informe {
     private String nombre;
     private EtapaProyecto analisis;
     private EtapaProyecto pruebas;
@@ -33,12 +35,14 @@ public class Proyecto implements Serializable, Informe{
         this.nombre = proyecto.getNombre();
         this.analisis = proyecto.getAnalisis();
         this.pruebas = proyecto.getPruebas();
-        this.tareas = new ArrayList<Tarea>();
+        this.tareas = proyecto.tareas;
     }
 
     public Proyecto(String nombre, EtapaProyecto analisis) {
         this.nombre = nombre;
         this.analisis = analisis;
+        tareas = new ArrayList<Tarea>();
+        pruebas = new EtapaProyecto();
     }
     
     
@@ -69,6 +73,8 @@ public class Proyecto implements Serializable, Informe{
     }
 
     public ArrayList<Tarea> getTareas() {
+        if( tareas == null);
+            tareas = new ArrayList<Tarea>();
         return tareas;
     }
 
@@ -147,5 +153,25 @@ public class Proyecto implements Serializable, Informe{
     }
     
     
-    
+    public boolean contiene(Tarea tarea){
+        for (Tarea t : tareas)
+            if (tarea == t)
+                return true;
+        return false;
+    }
+
+    public ArrayList<Tarea> subTareas(Tarea tarea){
+        ArrayList<Tarea> r = new ArrayList<Tarea>();
+        for (Tarea t : tareas)
+            if (t.getTareaPadre().equals(tarea.getNombre()))
+                r.add(tarea);
+        return r;
+    }
+
+    public Tarea buscarTarea(String nombre){
+        for (Tarea tarea : tareas)
+            if (tarea.getNombre().equals(nombre))
+                return tarea;
+        return null;
+    }
 }

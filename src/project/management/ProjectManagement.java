@@ -19,24 +19,24 @@ public class ProjectManagement{
     
     public static void main(String[] args) {
         FlatCarbonIJTheme.setup();
-        main2();
+        
+        modelo = new Modelo("resources/data/datos.pymg");
+
+        ventanaPrincipal = new VentanaPrincipal();
+        SwingUtilities.invokeLater(() -> {
+            controladorPrincipal = new ControladorPrincipal(modelo,ventanaPrincipal);
+        });
         
         
     }
     public static void main2(){
         modelo = new Modelo("resources/data/datos.pymg");
-        controladorPrincipal = new ControladorPrincipal(modelo);
+
         ventanaPrincipal = new VentanaPrincipal();
         ventanaPrincipal.setControlador(controladorPrincipal);
-        controladorPrincipal.setVentana(ventanaPrincipal);
         
         SwingUtilities.invokeLater(() -> {
-            ventanaPrincipal.setVisible(true);
+            controladorPrincipal = new ControladorPrincipal(modelo,ventanaPrincipal);
         });
-    }
-    public static void prueba(){
-        LocalTime tiempo = LocalTime.of(2,43,01);
-        int segundos = 9781;
-        System.out.println(Tiempo.pasarSegundosATime(segundos));
     }
 }

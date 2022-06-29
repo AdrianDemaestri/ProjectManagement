@@ -19,8 +19,8 @@ import vista.CronoPanel;
  */
 public final class ControladorCronoPanel implements ActionListener{
     vista.CronoPanel cronoPanel;
-    FlatSVGIcon play  = new FlatSVGIcon("imagenes/threadRunning.svg",20,20);;
-    FlatSVGIcon pause = new FlatSVGIcon("imagenes/pause.svg",20,20);
+    FlatSVGIcon play  = new FlatSVGIcon("imagenes/startTimer_dark.svg",20,20);
+    FlatSVGIcon pause = new FlatSVGIcon("imagenes/stopTimer_dark.svg",20,20);
     modelo.Cronometro cronometro;
     MedirTiempo medirTiempo;
     boolean iniciado = false;

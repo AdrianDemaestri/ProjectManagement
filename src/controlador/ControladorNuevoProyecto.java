@@ -19,28 +19,23 @@ import vista.DialogNuevoProyecto;
 public class ControladorNuevoProyecto implements ActionListener{
 
     vista.DialogNuevoProyecto ventana;
-    Cronometro cronometro;
-    modelo.Modelo modelo;
+    ControladorPrincipal  controladorPrincipal;
     
 
-    public ControladorNuevoProyecto(modelo.Modelo modelo, Cronometro cronometro) {
-        this.modelo = modelo;
-        setCronometro(cronometro);
+    public ControladorNuevoProyecto(ControladorPrincipal controladorPrincipal) {
+        this.controladorPrincipal = controladorPrincipal;
     }
-    
-    
-    
-    public void setCronometro(Cronometro cronometro){
-        this.cronometro = cronometro;
-    }
-    
-
     public void setVentana(DialogNuevoProyecto ventana) {
         this.ventana = ventana;
-        ventana.cronoPanel.setControlador(new ControladorCronoPanel(ventana.cronoPanel,cronometro,new EtapaProyecto()));
+        ventana.cronoPanel.setControlador(new ControladorCronoPanel(ventana.cronoPanel,controladorPrincipal.cronometro,new EtapaProyecto()));
     }
     
     public void setVisible(boolean b){ventana.setVisible(b);}
+
+    public void llamar(){
+        setVentana(new vista.DialogNuevoProyecto(controladorPrincipal.ventana,this, true));
+        setVisible(true);
+    }
     
  
     @Override
@@ -52,8 +47,9 @@ public class ControladorNuevoProyecto implements ActionListener{
             ((CardLayout)ventana.jPanelContenedor.getLayout()).show(ventana.jPanelContenedor, "nombre");
         
         else if (e.getSource().equals(ventana.jButtonCrear)){
-            cronometro.stop();
-            modelo.getProyectos().add(new Proyecto(ventana.jTextFieldNombre.getText(),(EtapaProyecto)cronometro.getObjeto()));
+            controladorPrincipal.cronometro.stop();
+            controladorPrincipal.model.getProyectos().add(new Proyecto(ventana.jTextFieldNombre.getText(),(EtapaProyecto)controladorPrincipal.cronometro.getObjeto()));
+            controladorPrincipal.controladorTree.actualizarTree();
             ventana.dispose();
         }
             

@@ -13,72 +13,63 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Cronometro;
+import modelo.Informe;
 import modelo.MedirTiempo;
 import vista.CronoPanel;
 import vista.VentanaPrincipal;
 
-
 /**
- *
- * @author Adrian Demaestri
+ * @author Valhalla Code
  */
 public class ControladorPrincipal implements ActionListener{
     
-    private vista.VentanaPrincipal ventana;
-    ControladorCronoPanel controladorCronoPanel;
-    modelo.Cronometro cronometro;
-    modelo.Modelo modelo;
+    public ControladorTree controladorTree;
+    public vista.VentanaPrincipal ventana;
+    public modelo.Modelo model;
+    public modelo.Cronometro cronometro;
+    public Informe informeActivo;
+    private ControladorCronoPanel controladorCronoPanel;
+    private ControladorJFXPanel controladorJFXPanel;
+    private ControladorNuevoProyecto controladorNuevoProyecto;
+    private ControladorNuevaTarea controladorNuevaTarea;
 
-    public ControladorPrincipal( modelo.Modelo modelo) {
-        this.modelo = modelo;
+    public ControladorPrincipal( modelo.Modelo modelo, VentanaPrincipal ventanaPrincipal) {
+        model = modelo;
+        setVentana(ventanaPrincipal);
         cronometro = new Cronometro();
         iniciar();
     }
     
-    public ControladorPrincipal( modelo.Modelo modelo, Cronometro cronometro) {
-        this.modelo = modelo;
-        this.cronometro = cronometro;
-        iniciar();
-    }
-    
     private void iniciar(){
-        if (modelo.getProyectos().size() == 0)
-            llamarNuevoProyecto();
+        controladorNuevaTarea = new ControladorNuevaTarea(this);
+        controladorNuevoProyecto = new ControladorNuevoProyecto(this);
+        if (model.getProyectos().size() == 0)
+            controladorNuevoProyecto.llamar();
         
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(ventana.jMenuItemNuevaTarea))
-            llamarNuevaTarea();
+            controladorNuevaTarea.llamar();
         
         if(e.getSource().equals(ventana.jMenuItemNuevoProyecto))
-            llamarNuevoProyecto();
-    }
-    
-    private void llamarNuevaTarea(){
-        ControladorNuevaTarea c = new ControladorNuevaTarea(modelo);
-        c.setVentana(new vista.DialogNuevaTarea(ventana,c, true));
-        c.setVisible(true);
-    }
-    
-    private void llamarNuevoProyecto(){
-        ControladorNuevoProyecto c = new ControladorNuevoProyecto(modelo,cronometro);
-        c.setVentana(new vista.DialogNuevoProyecto(ventana,c, true));
-        c.setVisible(true);
-        System.out.println(modelo.getProyectos());
+            controladorNuevoProyecto.llamar();
     }
 
     public void setVentana(VentanaPrincipal ventana) {
         this.ventana = ventana;
+        ventana.setControlador(this);
+
         inicializarVista();
+        controladorTree = new ControladorTree(this);
+        controladorJFXPanel = new ControladorJFXPanel(this);
+        ventana.setVisible(true);
     }
     
     void inicializarVista(){
         ventana.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {modelo.escribir();}
-            
+            public void windowClosing(WindowEvent e) {model.escribir();}
         });
         iniciarIconos();
     }

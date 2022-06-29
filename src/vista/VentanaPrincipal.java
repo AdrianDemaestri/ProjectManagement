@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-   controlador.ControladorPrincipal controlador;
+    public controlador.ControladorPrincipal controlador;
     public VentanaPrincipal() {
         initComponents();
         
@@ -43,10 +43,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jSplitPane2 = new javax.swing.JSplitPane();
         jScrollPaneArbol = new javax.swing.JScrollPane();
         jTreeProyectos = new javax.swing.JTree();
-        jSplitPane1 = new javax.swing.JSplitPane();
+        jSplitPaneInfo = new javax.swing.JSplitPane();
         jScrollPaneInfo = new javax.swing.JScrollPane();
         jPanelInfo = new javax.swing.JPanel();
-        jScrollPaneEstadistica = new javax.swing.JScrollPane();
         jToolBar1 = new javax.swing.JToolBar();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuArchivo = new javax.swing.JMenu();
@@ -82,17 +81,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jSplitPane2.setLeftComponent(jScrollPaneArbol);
 
-        jSplitPane1.setDividerLocation(250);
-        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-        jSplitPane1.setToolTipText("");
+        jSplitPaneInfo.setDividerLocation(250);
+        jSplitPaneInfo.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPaneInfo.setToolTipText("");
 
         jPanelInfo.setLayout(new java.awt.BorderLayout());
         jScrollPaneInfo.setViewportView(jPanelInfo);
 
-        jSplitPane1.setLeftComponent(jScrollPaneInfo);
-        jSplitPane1.setRightComponent(jScrollPaneEstadistica);
+        jSplitPaneInfo.setLeftComponent(jScrollPaneInfo);
 
-        jSplitPane2.setRightComponent(jSplitPane1);
+        jSplitPane2.setRightComponent(jSplitPaneInfo);
 
         jToolBar1.setRollover(true);
 
@@ -140,7 +138,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -148,7 +146,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,10 +176,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanelInfo;
     private javax.swing.JScrollPane jScrollPaneArbol;
-    public javax.swing.JScrollPane jScrollPaneEstadistica;
     public javax.swing.JScrollPane jScrollPaneInfo;
-    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    public javax.swing.JSplitPane jSplitPaneInfo;
     private javax.swing.JToolBar jToolBar1;
     public javax.swing.JTree jTreeProyectos;
     // End of variables declaration//GEN-END:variables
