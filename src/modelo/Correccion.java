@@ -25,6 +25,8 @@ public class Correccion extends MedirTiempo implements Serializable {
         this.lineasErroneas = correccion.getLineasErroneas();
     }
 
+    public Correccion(){}
+
     public Integer getLineasAgregadas() {
         return lineasAgregadas;
     }

@@ -22,6 +22,8 @@ public class Desarrollo extends MedirTiempo implements Serializable{
         this.lineasCodigo = desarrollo.getLineasCodigo();
     }
 
+    public Desarrollo(){}
+
     public Integer getLineasCodigo() {
         return lineasCodigo;
     }

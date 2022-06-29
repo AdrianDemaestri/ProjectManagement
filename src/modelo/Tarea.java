@@ -25,6 +25,12 @@ public class Tarea implements Serializable, Informe{
         this.desarrollo = desarrollo;
         this.correccion = correccion;
     }
+    public Tarea(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.desarrollo = new Desarrollo();
+        this.correccion = new Correccion();
+    }
     public Tarea(Tarea tarea){
         this.nombre = tarea.getNombre();
         this.tareaPadre = tarea.getTareaPadre();

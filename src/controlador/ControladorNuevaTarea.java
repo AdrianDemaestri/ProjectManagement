@@ -35,6 +35,16 @@ public class ControladorNuevaTarea implements ActionListener {
         for (Tarea tarea : proyectoActivo.getTareas() )
             ventana.jComboBox.addItem(tarea.getNombre());
     }
+
+    private void setProyectoActivo(){
+        if(controladorPrincipal.informeActivo instanceof Proyecto)
+            proyectoActivo = (Proyecto) controladorPrincipal.informeActivo;
+        else{
+            for (Proyecto proyecto : controladorPrincipal.model.getProyectos())
+                if (proyecto.contiene((Tarea) controladorPrincipal.informeActivo))
+                    proyectoActivo = proyecto;
+        }
+    }
  
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -43,6 +53,9 @@ public class ControladorNuevaTarea implements ActionListener {
         
         else if(e.getSource().equals(ventana.jButtonAtras))
             ((CardLayout)ventana.jPanelContenedor.getLayout()).show(ventana.jPanelContenedor, "nombre");
+
+        else if (e.getSource().equals(ventana.jButtonCrear))
+            crear();
     }
 
     public void llamar(){
