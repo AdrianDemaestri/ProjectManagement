@@ -20,7 +20,7 @@ public class Proyecto implements Serializable, Informe {
     private String nombre;
     private EtapaProyecto analisis;
     private EtapaProyecto pruebas;
-    ArrayList<Tarea> tareas;
+    private ArrayList<Tarea> tareas;
 
     // Metodos getter y setter 
 
@@ -29,7 +29,7 @@ public class Proyecto implements Serializable, Informe {
         this.nombre = nombre;
         this.analisis.setTiempo(tiempoAnalisis);
         this.pruebas.setTiempo(tiempoPruebas);
-        this.tareas = new ArrayList<Tarea>();
+        tareas = new ArrayList<Tarea>();
     }
     public Proyecto(Proyecto proyecto) {
         this.nombre = proyecto.getNombre();
@@ -47,7 +47,7 @@ public class Proyecto implements Serializable, Informe {
     
     
 
-    public Proyecto() {}
+    public Proyecto() {tareas =  new ArrayList<Tarea>();}
 
     public String getNombre() {
         return nombre;
@@ -73,7 +73,7 @@ public class Proyecto implements Serializable, Informe {
     }
 
     public ArrayList<Tarea> getTareas() {
-        if( tareas == null);
+        if( tareas == null)
             tareas = new ArrayList<Tarea>();
         return tareas;
     }
@@ -174,4 +174,6 @@ public class Proyecto implements Serializable, Informe {
                 return tarea;
         return null;
     }
+
+    public void addTarea(Tarea tarea){tareas.add(tarea);}
 }

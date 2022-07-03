@@ -7,10 +7,9 @@ package controlador;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import modelo.Proyecto;
+import java.util.ArrayList;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import modelo.Modelo;
+import modelo.Proyecto;
 import modelo.Tarea;
 import vista.DialogNuevaTarea;
 
@@ -27,15 +26,19 @@ public class ControladorNuevaTarea implements ActionListener {
     public ControladorNuevaTarea(ControladorPrincipal controladorPrincipal) {
         this.controladorPrincipal = controladorPrincipal;
     }
+    public void llamar(){
+        setVentana(new vista.DialogNuevaTarea(controladorPrincipal.ventana,this, true));
+        ventana.setVisible(true);
+    }
     
     public void setVentana(DialogNuevaTarea ventana) {
         this.ventana = ventana;
-        ventana.jComboBox.removeAll();
+        ventana.jComboBox.removeAllItems();
         setProyectoActivo();
-        for (Tarea tarea : proyectoActivo.getTareas() )
-            ventana.jComboBox.addItem(tarea.getNombre());
+        configurarComboBox();
     }
 
+    //saber que proyecto esta en seleccion
     private void setProyectoActivo(){
         if(controladorPrincipal.informeActivo instanceof Proyecto)
             proyectoActivo = (Proyecto) controladorPrincipal.informeActivo;
@@ -45,6 +48,31 @@ public class ControladorNuevaTarea implements ActionListener {
                     proyectoActivo = proyecto;
         }
     }
+
+    private void configurarComboBox(){
+        for (Tarea tarea : proyectoActivo.getTareas() )
+            ventana.jComboBox.addItem(tarea.getNombre());
+
+        ventana.jCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ventana.jCheckBox.isSelected())
+                    ventana.jComboBox.setEnabled(true);
+                else
+                    ventana.jComboBox.setEnabled(false);
+            }
+        });
+
+        if(controladorPrincipal.informeActivo instanceof Proyecto)
+            ventana.jCheckBox.setEnabled(true);
+        else {
+            ventana.jCheckBox.setEnabled(true);
+            ventana.jComboBox.setSelectedItem(((Tarea)controladorPrincipal.informeActivo).getNombre());
+        }
+
+    }
+
+
  
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -58,23 +86,22 @@ public class ControladorNuevaTarea implements ActionListener {
             crear();
     }
 
-    public void llamar(){
-        setVentana(new vista.DialogNuevaTarea(controladorPrincipal.ventana,this, true));
-        ventana.setVisible(true);
-    }
+
 
     private void crear(){
-        Tarea tarea =new Tarea(ventana.jTextNombre.getText(),ventana.jTextDescripcion.getText());
-        if(ventana.jCheckBox.isSelected())
-            tarea.setTareaPadre((String) ventana.jComboBox.getSelectedItem());
+        Tarea tarea = new Tarea(ventana.jTextNombre.getText(),ventana.jTextDescripcion.getText());
+        System.out.println("tarea creada " + tarea);
+        System.out.println("proyecto activo " + proyectoActivo);
+
+        proyectoActivo.addTarea(tarea);
+        
+
+        System.out.println("tareas: " + proyectoActivo.getTareas());
+        if(ventana.jCheckBox.isSelected()){
+            tarea.setTareaPadre(proyectoActivo.buscarTarea((String) ventana.jComboBox.getSelectedItem()));
+            tarea.tareaPadre.subTareas.add(tarea);
+        }
+        controladorPrincipal.controladorTree.actualizarTree();
+        ventana.dispose();
     }
-
-
-
-
-
-    
-    
-    
-
 }

@@ -1,6 +1,7 @@
 package controlador;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.formdev.flatlaf.icons.FlatTreeCollapsedIcon;
 import modelo.Informe;
 import modelo.Proyecto;
 import modelo.Tarea;
@@ -34,7 +35,9 @@ public class ControladorTree {
     private void initTree(){
         tree = controladorPrincipal.ventana.jTreeProyectos;
         tree.setCellRenderer(estilizarTree());
+
         tree.setRootVisible(false);
+        tree.setShowsRootHandles(true);
         eventos();
         actualizarTree();
     }
@@ -53,11 +56,17 @@ public class ControladorTree {
             super.getTreeCellRendererComponent(tree, value, selected,expanded, leaf, row, hasFocus);
             //altura de cada nodo
 //                tree.setRowHeight(26);
+
             if ( valor.getUserObject() instanceof Tarea)
                 setIcon (iconoTarea);
 
-            if ( valor.getUserObject() instanceof Proyecto)
+            else if ( valor.getUserObject() instanceof Proyecto)
                 setIcon(iconoProyecto);
+
+            else if (((DefaultMutableTreeNode) value).isRoot())
+                System.out.println("si");
+
+
             return this;
         }};
         return estilizarTree;
@@ -74,7 +83,7 @@ public class ControladorTree {
                 if (!tareasAgregadas.contains(tarea)){
                     DefaultMutableTreeNode treeNodeTarea = new DefaultMutableTreeNode(tarea);
                     treeNodeProyecto.add(treeNodeTarea);
-                    tareasAgregadas.addAll(cargarSubTareas(treeNodeTarea,proyecto));
+                    tareasAgregadas.addAll(cargarSubTareas(treeNodeTarea));
                 }
             }
         }
@@ -83,14 +92,14 @@ public class ControladorTree {
         tree.setModel(modelo);
     }
 
-    private ArrayList<Tarea> cargarSubTareas(DefaultMutableTreeNode treeNodeTareaPadre, Proyecto proyecto){
+    private ArrayList<Tarea> cargarSubTareas(DefaultMutableTreeNode treeNodeTareaPadre){
         ArrayList<Tarea> tareasAgregadas = new ArrayList<>();
 
-        for(Tarea tarea : proyecto.subTareas((Tarea)treeNodeTareaPadre.getUserObject())){
+        for(Tarea tarea : ((Tarea)treeNodeTareaPadre.getUserObject()).subTareas){
             DefaultMutableTreeNode treeNodeTarea = new DefaultMutableTreeNode(tarea);
             treeNodeTareaPadre.add(treeNodeTarea);
             tareasAgregadas.add(tarea);
-            tareasAgregadas.addAll(cargarSubTareas(treeNodeTarea,proyecto));
+            tareasAgregadas.addAll(cargarSubTareas(treeNodeTarea));
         }
 
         return tareasAgregadas;

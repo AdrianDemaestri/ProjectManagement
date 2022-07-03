@@ -1,7 +1,11 @@
 package project.management;
 
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.intellijthemes.FlatCarbonIJTheme;
-import javax.swing.SwingUtilities;
+
+import javax.swing.*;
+
+import com.formdev.flatlaf.intellijthemes.FlatDarkFlatIJTheme;
 import vista.*;
 import controlador.*;
 import modelo.*;
@@ -18,8 +22,8 @@ public class ProjectManagement{
     private static VentanaPrincipal ventanaPrincipal;
     
     public static void main(String[] args) {
-        FlatCarbonIJTheme.setup();
-        
+        FlatDarkFlatIJTheme.setup();
+
         modelo = new Modelo("resources/data/datos.pymg");
 
         ventanaPrincipal = new VentanaPrincipal();

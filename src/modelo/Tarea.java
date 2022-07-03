@@ -5,6 +5,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,23 +14,27 @@ import java.io.Serializable;
 public class Tarea implements Serializable, Informe{
 
     private String nombre;
-    private String tareaPadre;
+//    private String tareaPadre;
+    public Tarea tareaPadre;
+    public ArrayList<Tarea> subTareas;
     private String descripcion;
     private Correccion correccion;
     private Desarrollo desarrollo;
 
-    public Tarea(String nombre, String tareaPadre, String descripcion, Desarrollo desarrollo, Correccion correccion) {
+    public Tarea(String nombre, Tarea tareaPadre, String descripcion, Desarrollo desarrollo, Correccion correccion, ArrayList<Tarea> subTareas) {
         this.nombre = nombre;
         this.tareaPadre = tareaPadre;
         this.descripcion = descripcion;
         this.desarrollo = desarrollo;
         this.correccion = correccion;
+        this.subTareas = subTareas;
     }
     public Tarea(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.desarrollo = new Desarrollo();
         this.correccion = new Correccion();
+        this.subTareas = new ArrayList<Tarea>();
     }
     public Tarea(Tarea tarea){
         this.nombre = tarea.getNombre();
@@ -37,6 +42,7 @@ public class Tarea implements Serializable, Informe{
         this.descripcion = tarea.getDescripcion();
         this.desarrollo = tarea.getDesarrollo();
         this.correccion = tarea.getCorreccion();
+        this.subTareas = tarea.getSubTareas();
     }
 
     public String getNombre() {
@@ -47,14 +53,18 @@ public class Tarea implements Serializable, Informe{
         this.nombre = nombre;
     }
 
-    public String getTareaPadre() {
+    public Tarea getTareaPadre() {
         return tareaPadre;
     }
-
-    public void setTareaPadre(String nombre) {
+    public void setTareaPadre(Tarea tareaPadre) {
         this.tareaPadre = tareaPadre;
     }
-
+    public ArrayList<Tarea> getSubTareas(){
+        return this.subTareas;
+    }
+    public void setSubTareas(ArrayList<Tarea> subTareas){
+        this.subTareas = subTareas;
+    }
     public Correccion getCorreccion() {
         return correccion;
     }
@@ -81,17 +91,23 @@ public class Tarea implements Serializable, Informe{
 
     // Metodo para calcular el tiempo total del desarrollo
     public int tiempo(){
-        return correccion.getTiempo() + desarrollo.getTiempo();
+        int acum = 0;
+        for(Tarea subTarea : subTareas)
+            acum += subTarea.getDesarrollo().getTiempo() + subTarea.getCorreccion().getTiempo();
+        return acum;
     }
     // Metodo para calcular las lineas totales de la tarea en particular
     public int lineasCodigo(){
-        return  desarrollo.getLineasCodigo() + correccion.LineasCodigo();
+        int acum = 0;
+        for(Tarea subTarea : subTareas)
+            acum += subTarea.getDesarrollo().getLineasCodigo() + (subTarea.getCorreccion().getLineasAgregadas() - subTarea.getCorreccion().getLineasErroneas());
+        return acum;
     }
 
     // Metodos de Informe (Interface)
     @Override
     public int lineasCodigoTotal() {
-        return getDesarrollo().getLineasCodigo() + getCorreccion().LineasCodigo();
+        return this.lineasCodigo();
     }
 
     @Override
@@ -121,5 +137,10 @@ public class Tarea implements Serializable, Informe{
     @Override
     public float porcentajeCodigoErroneo() {
         return (float)getCorreccion().getLineasErroneas() * 100 / (float) (lineasCodigoTotal());
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

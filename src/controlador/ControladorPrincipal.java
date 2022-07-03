@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import modelo.Cronometro;
 import modelo.Informe;
 import modelo.MedirTiempo;
+import modelo.Proyecto;
 import vista.CronoPanel;
 import vista.VentanaPrincipal;
 
@@ -50,9 +51,12 @@ public class ControladorPrincipal implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(ventana.jMenuItemNuevaTarea))
+        if(e.getSource().equals(ventana.jMenuItemNuevaTarea)){
+            System.out.println(((Proyecto)informeActivo).getTareas());
             controladorNuevaTarea.llamar();
-        
+            System.out.println(((Proyecto)informeActivo).getTareas());
+        }
+
         if(e.getSource().equals(ventana.jMenuItemNuevoProyecto))
             controladorNuevoProyecto.llamar();
     }
